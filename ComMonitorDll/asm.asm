@@ -1,14 +1,7 @@
-
-EXTERN originalShow : QWORD
-
-extern MessageBoxA : proc
+extern Report : proc
 .code
 
 Func proc
-
-	mov rax, [rsp]
-	sub rax, 1
-
 
 	push rcx
 	push rdx
@@ -16,11 +9,12 @@ Func proc
 	push r9
 
 	sub rsp, 28h
-	mov rcx, 0
-	mov rdx, 0
-	mov r8, 0
-	mov r9, 0
-	call MessageBoxA
+	mov rcx, 1234567812345678h
+	mov rdx, 1234567812345678h
+	mov r8, 1234567812345678h
+	mov r9, 1234567812345678h
+	mov rax, Report
+	call rax
 	add rsp, 28h
 	pop r9
 	pop r8
@@ -28,7 +22,7 @@ Func proc
 	pop rcx
 
 	; 通过jmp回到原函数
-	mov rax, [originalShow]
+	mov rax, 1234567812345678h
 	jmp rax
 Func endp
 
